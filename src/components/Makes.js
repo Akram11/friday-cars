@@ -1,6 +1,7 @@
 import { getMakes } from "../services/makes";
 import { useEffect, useState } from "react";
 import Card from "./Card";
+import "./style.css";
 
 export default function Makes({ handleSetMake }) {
     const [list, setList] = useState([]);
@@ -18,23 +19,24 @@ export default function Makes({ handleSetMake }) {
         let mounted = true;
         getMakes().then((items) => {
             if (mounted) {
-                console.log(items);
                 setList(items);
             }
         });
         return () => (mounted = false);
     }, []);
 
-    console.log(searchTerm);
     return typeof list === "string" ? (
         <h2>{list} please refresh the page</h2>
     ) : (
         <div>
-            <input
-                placeholder="filter"
-                value={searchTerm}
-                onChange={handleSearch}
-            />
+            <div className="search-container">
+                <input
+                    className="input"
+                    placeholder="filter"
+                    value={searchTerm}
+                    onChange={handleSearch}
+                />
+            </div>
             {results.map((item, i) => (
                 <Card
                     onClick={() => {

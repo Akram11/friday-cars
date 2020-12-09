@@ -5,6 +5,16 @@ import "./style.css";
 
 export default function Models({ make, handleSetModel, back }) {
     const [list, setList] = useState([]);
+    let [searchTerm, setSearchTerm] = useState("");
+
+    const handleSearch = (event) => {
+        setSearchTerm(event.target.value);
+    };
+
+    let results = !searchTerm
+        ? list
+        : list.filter((l) => l.toLowerCase().includes(searchTerm));
+
     useEffect(() => {
         let mounted = true;
         getModels(make).then((items) => {
@@ -26,7 +36,13 @@ export default function Models({ make, handleSetModel, back }) {
         return list.length === 0 ? (
             <h2>Uh oh! there is no models available for this make</h2>
         ) : (
-            <div>
+            <div className="search-container">
+                <input
+                    className="input"
+                    placeholder="filter"
+                    value={searchTerm}
+                    onChange={handleSearch}
+                />
                 <button
                     type="button"
                     className="btn-back"
@@ -37,7 +53,7 @@ export default function Models({ make, handleSetModel, back }) {
                 >
                     Back
                 </button>
-                {list.map((item, i) => (
+                {results.map((item, i) => (
                     <Card
                         onClick={() => handleSetModel(item)}
                         model={item}
