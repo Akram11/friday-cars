@@ -1,15 +1,12 @@
 import { getModels } from "../services/models";
 import { useEffect, useState } from "react";
 import Card from "./Card";
+import SearchBar from "./searchBar";
 import "./style.css";
 
 export default function Models({ make, handleSetModel, back }) {
     const [list, setList] = useState([]);
     let [searchTerm, setSearchTerm] = useState("");
-
-    const handleSearch = (event) => {
-        setSearchTerm(event.target.value);
-    };
 
     let results = !searchTerm
         ? list
@@ -19,7 +16,6 @@ export default function Models({ make, handleSetModel, back }) {
         let mounted = true;
         getModels(make).then((items) => {
             if (mounted) {
-                console.log(items);
                 setList(items);
             }
         });
@@ -37,12 +33,11 @@ export default function Models({ make, handleSetModel, back }) {
             <h2>Uh oh! there is no models available for this make</h2>
         ) : (
             <div className="search-container">
-                <input
-                    className="input"
-                    placeholder="filter"
-                    value={searchTerm}
-                    onChange={handleSearch}
+                <SearchBar
+                    searchTerm={searchTerm}
+                    setSearchTerm={setSearchTerm}
                 />
+
                 <button
                     type="button"
                     className="btn-back"

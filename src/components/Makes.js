@@ -1,15 +1,12 @@
 import { getMakes } from "../services/makes";
 import { useEffect, useState } from "react";
 import Card from "./Card";
+import SearchBar from "./searchBar";
 import "./style.css";
 
 export default function Makes({ handleSetMake }) {
     const [list, setList] = useState([]);
     let [searchTerm, setSearchTerm] = useState("");
-
-    const handleSearch = (event) => {
-        setSearchTerm(event.target.value);
-    };
 
     let results = !searchTerm
         ? list
@@ -28,15 +25,19 @@ export default function Makes({ handleSetMake }) {
     return typeof list === "string" ? (
         <h2>{list} please refresh the page</h2>
     ) : (
-        <div>
-            <div className="search-container">
+        <>
+            <SearchBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
+            {/* <div className="search-container">
                 <input
+                    autoFocus
                     className="input"
                     placeholder="filter"
                     value={searchTerm}
-                    onChange={handleSearch}
+                    onChange={(e) => {
+                        setSearchTerm(e.target.value);
+                    }}
                 />
-            </div>
+            </div> */}
             {results.map((item, i) => (
                 <Card
                     onClick={() => {
@@ -46,6 +47,6 @@ export default function Makes({ handleSetMake }) {
                     key={i}
                 />
             ))}
-        </div>
+        </>
     );
 }

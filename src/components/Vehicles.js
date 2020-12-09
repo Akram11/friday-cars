@@ -9,7 +9,6 @@ export default function Vehicles({ back, make, model, updateScreen }) {
         let mounted = true;
         getVehicles(make, model).then((items) => {
             if (mounted) {
-                console.log(items);
                 setList(items);
             }
         });
@@ -17,11 +16,7 @@ export default function Vehicles({ back, make, model, updateScreen }) {
     }, []);
 
     if (typeof list === "string") {
-        return (
-            <h2>
-                <h2>{list} please refresh the page</h2>{" "}
-            </h2>
-        );
+        return <h2>{list} please refresh the page</h2>;
     } else {
         return list.length === 0 ? (
             <h2>Uh oh! there are no available vehicles for this model</h2>
