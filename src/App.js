@@ -9,22 +9,19 @@ function App() {
     let [make, setMake] = useState("");
     let [model, setModel] = useState("");
 
-    const handleSetMake = (make) => {
-        setMake(make);
-    };
-
     return (
         <div className="App">
             {screen === 1 && (
                 <Makes
                     handleSetMake={(make) => {
-                        handleSetMake(make);
+                        setMake(make);
                         setScreen(screen + 1);
                     }}
                 />
             )}
             {screen === 2 && (
                 <Models
+                    back={() => setScreen(screen - 1)}
                     handleSetModel={(model) => {
                         setModel(model);
                         setScreen(screen + 1);
@@ -32,7 +29,13 @@ function App() {
                     make={make}
                 />
             )}
-            {screen === 3 && <Vehicles make={make} model={model} />}
+            {screen === 3 && (
+                <Vehicles
+                    back={() => setScreen(screen - 1)}
+                    make={make}
+                    model={model}
+                />
+            )}
         </div>
     );
 }

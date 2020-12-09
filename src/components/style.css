@@ -1,0 +1,38 @@
+.card-style {
+    color: red;
+    border: 1px solid #d7d6da;
+    border-bottom: 0;
+    border-radius: 0;
+    background-color: #fff;
+    color: #363145;
+    cursor: pointer;
+    padding: 16px;
+    outline: 0;
+    /* display: flex; */
+    overflow: hidden;
+    list-style-type: none;
+}
+
+.card-style:hover {
+    background-color: #e0dfe4;
+}
+
+.card-style:active {
+    background-color: #7e57c2;
+}
+
+.btn-back {
+    font-weight: 600;
+    font-size: 1em;
+    color: #7e57c2;
+    border: none;
+    cursor: pointer;
+    white-space: nowrap;
+    overflow: hidden;
+    text-decoration: none;
+    text-align: center;
+    line-height: 42px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

@@ -5,7 +5,7 @@ export function getModels(make) {
             if (data.ok) {
                 return data.json();
             } else {
-                throw new Error("Something went wrong");
+                return "something went wrong";
             }
         }
     );

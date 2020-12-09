@@ -1,8 +1,8 @@
-import "./Card.css";
+import "./style.css";
 
 export default function Card({ ...props }) {
     return (
-        <div>
+        <>
             <li onClick={props.onClick} className="card-style">
                 {props.make}
                 {props.model}
@@ -12,6 +12,6 @@ export default function Card({ ...props }) {
                 {props.bodyType}
                 {props.engineCapacity}
             </li>
-        </div>
+        </>
     );
 }

@@ -1,5 +1,4 @@
 import { getMakes } from "../services/makes";
-import { getModels } from "../services/models";
 
 import { useEffect, useState } from "react";
 import Card from "./Card";

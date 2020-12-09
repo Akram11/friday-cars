@@ -1,3 +1,29 @@
 .App {
     padding: 40px;
+    line-height: 1.5;
+    font-size: 16px;
+    font-weight: 300;
+    font-family: "Rubik", Helvetica, Arial, sans-serif;
+}
+
+body {
+    background: #e7e2f79d;
+}
+
+btn-back {
+    font-weight: 400;
+    border: none;
+    border-radius: 42px;
+    cursor: pointer;
+    height: 42px;
+    outline: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-decoration: none;
+    text-overflow: ellipsis;
+    text-align: center;
+    line-height: 42px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
