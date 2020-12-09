@@ -1,25 +1,40 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import Makes from "./components/Makes";
+import Models from "./components/Models";
+import Vehicles from "./components/Vehicles";
+import { useState } from "react";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    let [screen, setScreen] = useState(1);
+    let [make, setMake] = useState("");
+    let [model, setModel] = useState("");
+
+    const handleSetMake = (make) => {
+        setMake(make);
+    };
+
+    return (
+        <div className="App">
+            {screen === 1 && (
+                <Makes
+                    handleSetMake={(make) => {
+                        handleSetMake(make);
+                        setScreen(screen + 1);
+                    }}
+                />
+            )}
+            {screen === 2 && (
+                <Models
+                    handleSetModel={(model) => {
+                        setModel(model);
+                        setScreen(screen + 1);
+                    }}
+                    make={make}
+                />
+            )}
+            {screen === 3 && <Vehicles make={make} model={model} />}
+        </div>
+    );
 }
 
 export default App;
