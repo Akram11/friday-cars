@@ -1,10 +1,19 @@
 import { getMakes } from "../services/makes";
-
 import { useEffect, useState } from "react";
 import Card from "./Card";
 
 export default function Makes({ handleSetMake }) {
     const [list, setList] = useState([]);
+    let [searchTerm, setSearchTerm] = useState("");
+
+    const handleSearch = (event) => {
+        setSearchTerm(event.target.value);
+    };
+
+    let results = !searchTerm
+        ? list
+        : list.filter((l) => l.toLowerCase().includes(searchTerm));
+
     useEffect(() => {
         let mounted = true;
         getMakes().then((items) => {
@@ -16,14 +25,18 @@ export default function Makes({ handleSetMake }) {
         return () => (mounted = false);
     }, []);
 
-    console.log(list);
+    console.log(searchTerm);
     return typeof list === "string" ? (
         <h2>{list} please refresh the page</h2>
     ) : (
         <div>
-            {list.map((item, i) => (
+            <input
+                placeholder="filter"
+                value={searchTerm}
+                onChange={handleSearch}
+            />
+            {results.map((item, i) => (
                 <Card
-                    // updateScreen={updateScreen}
                     onClick={() => {
                         handleSetMake(item);
                     }}
