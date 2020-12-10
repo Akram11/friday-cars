@@ -23,21 +23,10 @@ export default function Makes({ handleSetMake }) {
     }, []);
 
     return typeof list === "string" ? (
-        <h2>{list} please refresh the page</h2>
+        <h3>{list} please refresh the page</h3>
     ) : (
         <>
             <SearchBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
-            {/* <div className="search-container">
-                <input
-                    autoFocus
-                    className="input"
-                    placeholder="filter"
-                    value={searchTerm}
-                    onChange={(e) => {
-                        setSearchTerm(e.target.value);
-                    }}
-                />
-            </div> */}
             {results.map((item, i) => (
                 <Card
                     onClick={() => {
