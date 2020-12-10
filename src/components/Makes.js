@@ -3,9 +3,11 @@ import { useEffect, useState } from "react";
 import Card from "./Card";
 import SearchBar from "./searchBar";
 import "./style.css";
+import BackButton from "./BackButton";
 
 export default function Makes({ handleSetMake }) {
     const [list, setList] = useState([]);
+    const [error, setError] = useState("");
     let [searchTerm, setSearchTerm] = useState("");
 
     let results = !searchTerm
@@ -16,16 +18,22 @@ export default function Makes({ handleSetMake }) {
         let mounted = true;
         getMakes().then((items) => {
             if (mounted) {
-                setList(items);
+                typeof items === "string"
+                    ? setError("something went wrong, please try again.")
+                    : setList(items);
             }
         });
         return () => (mounted = false);
     }, []);
 
-    return typeof list === "string" ? (
-        <h3>{list} please refresh the page</h3>
+    return error ? (
+        <>
+            <h3>{error}</h3>
+            <BackButton back={window.location.reload()} />
+        </>
     ) : (
         <>
+            <span className="title"> Please choose the manufacturer: </span>
             <SearchBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
             {results.map((item, i) => (
                 <Card
