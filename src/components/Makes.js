@@ -8,6 +8,7 @@ import BackButton from "./BackButton";
 export default function Makes({ handleSetMake }) {
     const [list, setList] = useState([]);
     const [error, setError] = useState("");
+    const [loading, setloading] = useState(true);
     let [searchTerm, setSearchTerm] = useState("");
 
     let results = !searchTerm
@@ -22,17 +23,19 @@ export default function Makes({ handleSetMake }) {
                     ? setError("something went wrong, please try again.")
                     : setList(items);
             }
+            setloading(false);
         });
         return () => (mounted = false);
     }, []);
 
     return error ? (
-        <>
+        <div>
             <h3>{error}</h3>
             <BackButton back={window.location.reload()} />
-        </>
+        </div>
     ) : (
         <>
+            {loading && <p>loading...</p>}
             <span className="title"> Please choose the manufacturer: </span>
             <SearchBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
             {results.map((item, i) => (
