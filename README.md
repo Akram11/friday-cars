@@ -23,4 +23,4 @@ This project was is to provide users a simple way choose a specific car model, a
 
 This is a coding assisgment provided by [FRIDAY Insurance S.A.](https://www.friday.de/)
 
-The starter code which also icludes the API server can be found [here](https://gitlab.forfriday.de/-/snippets/56)
+The starter code which also icludes the API server can be found [here.](https://gitlab.forfriday.de/-/snippets/56)
