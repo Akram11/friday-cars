@@ -25,6 +25,6 @@ This is a coding assignment provided by [FRIDAY Insurance S.A.](https://www.frid
 
 The starter code which also includes the API server can be found [here.](https://gitlab.forfriday.de/-/snippets/56)
 
-## Acknowledgment
+## testing
 
 -   run `npm test` to run test suits
