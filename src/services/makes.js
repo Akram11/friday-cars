@@ -1,9 +1,8 @@
-export function getMakes() {
-    return fetch("http://localhost:8080/api/makes").then((data) => {
-        if (data.ok) {
-            return data.json();
-        } else {
-            return "something went wrong";
-        }
-    });
-}
+export const getMakes = async () => {
+    try {
+        const data = await fetch("http://localhost:8080/api/makes");
+        return await data.json();
+    } catch (err) {
+        return "something went wrong";
+    }
+};
