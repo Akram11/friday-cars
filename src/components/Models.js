@@ -35,7 +35,9 @@ export default function Models({ make, handleSetModel, back }) {
         <>
             {list.length === 0 ? (
                 <div>
-                    <h3>there is no models available for this manufacturer</h3>
+                    <span className="title">
+                        there is no models available for this manufacturer
+                    </span>
                     <BackButton back={back} />
                 </div>
             ) : (

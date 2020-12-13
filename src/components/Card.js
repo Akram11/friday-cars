@@ -6,11 +6,12 @@ export default function Card({ ...props }) {
             <li onClick={props.onClick} className="card-style">
                 {props.make}
                 {props.model}
-                {props.engPS}
-                {props.engKW}
-                {props.fuelType}
-                {props.bodyType}
-                {props.engineCapacity}
+                {props.bodyType && (
+                    <span>
+                        {props.bodyType} : {props.engKW} KW / {props.engPS} PS [
+                        {props.engineCapacity}]
+                    </span>
+                )}
             </li>
         </>
     );

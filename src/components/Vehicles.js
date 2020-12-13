@@ -2,90 +2,74 @@ import { getVehicles } from "../services/vehicles";
 import { useEffect, useState } from "react";
 import Card from "./Card";
 import BackButton from "./BackButton";
+import "./style.css";
 
-export default function Vehicles({ back, make, model, updateScreen }) {
+export default function Vehicles({ back, make, model }) {
     const [list, setList] = useState([]);
-    const [benzin, setBenzin] = useState([]);
-    const [diesel, setDezil] = useState([]);
-    const [hybrid, setHybrid] = useState([]);
+    const [error, setError] = useState("");
     const [selected, setSelected] = useState("");
-
-    // const options = ["hybrid", "diesel", "benzin"];
-    let result = [];
-
-    switch (selected) {
-        case "benzin":
-            result = benzin;
-            break;
-        case "diesel":
-            result = diesel;
-            break;
-        case "hybrid":
-            result = hybrid;
-            break;
-        default:
-            result = [];
-    }
 
     useEffect(() => {
         let mounted = true;
         getVehicles(make, model).then((items) => {
             if (mounted) {
-                if (typeof items !== "string") {
+                if (typeof items === "string") {
+                    setError("something went wrong, please try again.");
+                } else {
                     setList(items);
-                    setDezil(
-                        items.filter((item) => item.fuelType === "Diesel")
-                    );
-                    setBenzin(
-                        items.filter((item) => item.fuelType === "Benzin")
-                    );
-                    setHybrid(
-                        items.filter((item) => item.fuelType === "Hybrid")
-                    );
                 }
             }
         });
         return () => (mounted = false);
-    }, []);
-
-    console.log(selected);
-
-    if (typeof list === "string") {
-        return <h3>{list} please refresh the page</h3>;
-    } else {
-        return list.length === 0 ? (
-            <h3>there are no available vehicles for this model</h3>
-        ) : (
+    }, [make, model]);
+    if (error) {
+        return (
             <div>
+                <h3>{error}</h3>
                 <BackButton back={back} />
-                {selected === "" &&
-                    ["diesel", "benzin", "hybrid"].map((item, i) => (
+            </div>
+        );
+    } else if (list.length === 0) {
+        return (
+            <div>
+                <span className="title">
+                    there are no available vehicles for this model
+                </span>
+                <BackButton back={back} />
+            </div>
+        );
+    } else if (selected) {
+        return (
+            <div>
+                <BackButton back={() => setSelected("")} />
+                {list
+                    .filter((item) => item.fuelType === selected)
+                    .map((item, i) => (
                         <Card
-                            make={item}
-                            onClick={() => setSelected(item)}
                             key={i}
-                        />
-                    ))}
-                {selected && result.length === 0 ? (
-                    <div>
-                        <BackButton back={() => setSelected("")} />
-                        <span>no models for this fuel Type</span>
-                    </div>
-                ) : (
-                    result.map((item, i) => (
-                        <Card
-                            updateScreen={updateScreen}
-                            make={item.make}
-                            model={item.model}
                             engPS={item.enginePowerPS}
                             engKW={item.enginePowerKW}
-                            fuelType={item.fuelType}
                             bodyType={item.bodyType}
                             engineCapacity={item.engineCapacity}
-                            key={i}
                         />
-                    ))
+                    ))}
+                {list.filter((item) => item.fuelType === selected).length ===
+                    0 && (
+                    <span className="title">no models for this fuel Type</span>
                 )}
+            </div>
+        );
+    } else {
+        return (
+            <div>
+                <BackButton back={back} />
+                {["Diesel", "Benzin", "Hybrid"].map((item, i) => (
+                    <Card
+                        make={item}
+                        onClick={() => setSelected(item)}
+                        key={i}
+                    />
+                ))}
             </div>
         );
     }
