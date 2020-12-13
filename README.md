@@ -1,6 +1,6 @@
 # Fri:day Cars:
 
-This project was is to provide users a simple way choose a specific car model, allowing them to filter by manufacture, model, and fuel type.
+This project is to provide users a simple way to choose a specific car model, allowing them to filter by a manufacture, model, and fuel type.
 
 ## Installation
 
@@ -21,6 +21,6 @@ This project was is to provide users a simple way choose a specific car model, a
 
 ## Acknowledgment
 
-This is a coding assisgment provided by [FRIDAY Insurance S.A.](https://www.friday.de/)
+This is a coding assignment provided by [FRIDAY Insurance S.A.](https://www.friday.de/)
 
-The starter code which also icludes the API server can be found [here.](https://gitlab.forfriday.de/-/snippets/56)
+The starter code which also includes the API server can be found [here.](https://gitlab.forfriday.de/-/snippets/56)
