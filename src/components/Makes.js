@@ -1,9 +1,9 @@
 import { getMakes } from "../services/makes";
 import { useEffect, useState } from "react";
 import Card from "./Card";
-import SearchBar from "./searchBar";
-import "./style.css";
+import SearchBar from "./SearchBar";
 import BackButton from "./BackButton";
+import Title from "./Title";
 
 export default function Makes({ handleSetMake }) {
     const [list, setList] = useState([]);
@@ -30,13 +30,13 @@ export default function Makes({ handleSetMake }) {
 
     return error ? (
         <div>
-            <h3>{error}</h3>
+            <Title text={error} />
             <BackButton back={window.location.reload()} />
         </div>
     ) : (
         <>
             {loading && <p>loading...</p>}
-            <span className="title"> Please choose the manufacturer: </span>
+            <Title text={"Please choose the manufacturer:"} />
             <SearchBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
             {results.map((item, i) => (
                 <Card

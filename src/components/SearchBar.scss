@@ -1,0 +1,19 @@
+.input {
+    font-size: 1em;
+    font-weight: 400;
+    border-width: 1px;
+    border-style: solid;
+    border-color: #d7d6da;
+    border-radius: 8px;
+    color: #363145;
+    display: block;
+    outline: 0;
+    padding: 10px;
+    height: 25px;
+    margin: 20px 0 20px 0;
+    margin-bottom: 20px;
+    transition: 300ms all ease-in-out;
+    &:focus {
+        border-color: #7e57c2;
+    }
+}

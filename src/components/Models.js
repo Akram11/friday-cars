@@ -1,9 +1,10 @@
 import { getModels } from "../services/models";
 import { useEffect, useState } from "react";
 import Card from "./Card";
-import SearchBar from "./searchBar";
+import SearchBar from "./SearchBar";
 import BackButton from "./BackButton";
-import "./style.css";
+import Title from "./Title";
+import Map from "./Map";
 
 export default function Models({ make, handleSetModel, back }) {
     const [list, setList] = useState([]);
@@ -28,21 +29,25 @@ export default function Models({ make, handleSetModel, back }) {
 
     return error ? (
         <div>
-            <h3>{error}</h3>
+            <Title text={error} />
             <BackButton back={back} />
         </div>
     ) : (
         <>
             {list.length === 0 ? (
                 <div>
-                    <span className="title">
-                        there is no models available for this manufacturer
-                    </span>
+                    <Title
+                        text={
+                            "there is no models available for this manufacturer"
+                        }
+                    />
+                    <Map make={make} />
                     <BackButton back={back} />
                 </div>
             ) : (
                 <div>
-                    <span className="title">Please choose the model:</span>
+                    <Title text={"Please choose the model:"} />
+                    <Map make={make} />
                     <SearchBar
                         searchTerm={searchTerm}
                         setSearchTerm={setSearchTerm}

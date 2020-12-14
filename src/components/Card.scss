@@ -1,0 +1,21 @@
+.card-style {
+    color: red;
+    border: 1px solid #d7d6da;
+    border-bottom: 0;
+    border-radius: 0;
+    background-color: #fff;
+    color: #363145;
+    cursor: pointer;
+    padding: 16px;
+    outline: 0;
+    overflow: hidden;
+    list-style-type: none;
+    transition: 300ms all ease-in-out;
+
+    &:hover {
+        background-color: #e0dfe4;
+    }
+    &:active {
+        background-color: #7e57c2;
+    }
+}

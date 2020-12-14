@@ -1,3 +1,5 @@
+import "./BackButton.scss";
+
 export default function BackButton({ back }) {
     return (
         <button
