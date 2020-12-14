@@ -1,5 +1,5 @@
 import { render, screen, cleanup } from "@testing-library/react";
-import Makes from "../components/Makes";
+import Makes from "../components/molecules/Makes";
 import React from "react";
 
 afterEach(cleanup);

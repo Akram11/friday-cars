@@ -23,59 +23,65 @@ export default function Vehicles({ back, make, model }) {
         });
         return () => (mounted = false);
     }, [make, model]);
-    if (error) {
+
+    const renderFuelTypeOptions = (
+        <div>
+            <Title text={"Please choose the fuel type:"} />
+            <Map make={make} model={model} />
+            <BackButton back={back} />
+            {["Diesel", "Benzin", "Hybrid"].map((item, i) => (
+                <Card make={item} onClick={() => setSelected(item)} key={i} />
+            ))}
+        </div>
+    );
+
+    const renderResult = () => {
+        const filteredList = list.filter((item) => item.fuelType === selected);
         return (
             <div>
-                <Title text={error} />
-                <BackButton back={back} />
-            </div>
-        );
-    } else if (list.length === 0) {
-        return (
-            <div>
-                <Title
-                    text={"there are no available vehicles for this model"}
-                />
-                <Map make={make} model={model} />
-                <BackButton back={back} />
-            </div>
-        );
-    } else if (selected) {
-        return (
-            <div>
-                <Title text={" available models:"} />
                 <Map make={make} model={model} fuelType={selected} />
                 <BackButton back={() => setSelected("")} />
-                {list
-                    .filter((item) => item.fuelType === selected)
-                    .map((item, i) => (
-                        <Card
-                            key={i}
-                            engPS={item.enginePowerPS}
-                            engKW={item.enginePowerKW}
-                            bodyType={item.bodyType}
-                            engineCapacity={item.engineCapacity}
-                        />
-                    ))}
-                {list.filter((item) => item.fuelType === selected).length ===
-                    0 && <Title text={"no models for this fuel Type"} />}
-            </div>
-        );
-    } else {
-        return (
-            <div>
-                <Title text={"Please choose the fuel type:"} />
-                <Map make={make} model={model} />
 
-                <BackButton back={back} />
-                {["Diesel", "Benzin", "Hybrid"].map((item, i) => (
-                    <Card
-                        make={item}
-                        onClick={() => setSelected(item)}
-                        key={i}
-                    />
-                ))}
+                {filteredList.length === 0 ? (
+                    <Title text={"no available models for this fuel Type"} />
+                ) : (
+                    <>
+                        <Title text={" available models:"} />
+                        {filteredList.map((item, i) => (
+                            <Card
+                                key={i}
+                                engPS={item.enginePowerPS}
+                                engKW={item.enginePowerKW}
+                                bodyType={item.bodyType}
+                                engineCapacity={item.engineCapacity}
+                            />
+                        ))}
+                    </>
+                )}
             </div>
         );
-    }
+    };
+
+    const renderErrorMessage = (
+        <div>
+            <Title text={error} />
+            <BackButton back={back} />
+        </div>
+    );
+
+    const renderEmptyList = (
+        <div>
+            <Title text={"there are no available vehicles for this model"} />
+            <BackButton back={back} />
+        </div>
+    );
+
+    return (
+        <>
+            {error && renderErrorMessage}
+            {!error && list.length === 0 && renderEmptyList}
+            {!error && list.length !== 0 && selected && renderResult()}
+            {!error && list.length !== 0 && !selected && renderFuelTypeOptions}
+        </>
+    );
 }
