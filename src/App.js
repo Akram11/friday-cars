@@ -1,7 +1,7 @@
 import "./App.css";
-import Makes from "./components/Makes";
-import Models from "./components/Models";
-import Vehicles from "./components/Vehicles";
+import Makes from "./components/molecules/Makes";
+import Models from "./components/molecules/Models";
+import Vehicles from "./components/molecules/Vehicles";
 import { useState } from "react";
 
 function App() {

@@ -1,9 +1,9 @@
-import { getMakes } from "../services/makes";
+import { getMakes } from "../../services/makes";
 import { useEffect, useState } from "react";
-import Card from "./Card";
-import SearchBar from "./SearchBar";
-import BackButton from "./BackButton";
-import Title from "./Title";
+import Card from "../atoms/Card";
+import SearchBar from "../atoms/SearchBar";
+import BackButton from "../atoms/BackButton";
+import Title from "../atoms/Title";
 
 export default function Makes({ handleSetMake }) {
     const [list, setList] = useState([]);

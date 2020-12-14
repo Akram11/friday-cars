@@ -1,9 +1,9 @@
-import { getVehicles } from "../services/vehicles";
+import { getVehicles } from "../../services/vehicles";
 import { useEffect, useState } from "react";
-import Card from "./Card";
-import BackButton from "./BackButton";
-import Title from "./Title";
-import Map from "./Map";
+import Card from "../atoms/Card";
+import BackButton from "../atoms/BackButton";
+import Title from "../atoms/Title";
+import Map from "../atoms/Map";
 
 export default function Vehicles({ back, make, model }) {
     const [list, setList] = useState([]);

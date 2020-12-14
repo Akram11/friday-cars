@@ -14,7 +14,7 @@ body {
     background: #e7e2f79d;
 }
 
-btn-back {
+/* btn-back {
     font-weight: 400;
     border: none;
     border-radius: 42px;
@@ -27,7 +27,7 @@ btn-back {
     display: flex;
     justify-content: center;
     align-items: center;
-}
+} */
 
 @media (max-width: 600px) {
     .App {

@@ -1,10 +1,10 @@
-import { getModels } from "../services/models";
+import { getModels } from "../../services/models";
 import { useEffect, useState } from "react";
-import Card from "./Card";
-import SearchBar from "./SearchBar";
-import BackButton from "./BackButton";
-import Title from "./Title";
-import Map from "./Map";
+import Card from "../atoms/Card";
+import SearchBar from "../atoms/SearchBar";
+import BackButton from "../atoms/BackButton";
+import Title from "../atoms/Title";
+import Map from "../atoms/Map";
 
 export default function Models({ make, handleSetModel, back }) {
     const [list, setList] = useState([]);
